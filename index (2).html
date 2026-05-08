@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Olivier Laurens | Personal Portfolio</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --base:      #1A1A2E;
+      --primary:   #16213E;
+      --secondary: #0F3460;
+      --accent:    #E94560;
+      --light:     #F5F5F5;
+      --muted:     #a0a8b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      background: var(--base);
+      color: var(--light);
+      font-family: 'Nunito', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: rgba(22, 33, 62, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(233,69,96,0.25);
+      transition: all 0.3s;
+    }
+    .navbar-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--accent) !important;
+      letter-spacing: 2px;
+    }
+    .nav-link {
+      color: var(--muted) !important;
+      font-weight: 600;
+      position: relative;
+      padding: 0.5rem 1rem !important;
+      transition: color 0.3s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 50%; right: 50%;
+      height: 2px;
+      background: var(--accent);
+      transition: all 0.3s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent) !important;
+    }
+    .nav-link:hover::after, .nav-link.active::after {
+      left: 10%; right: 10%;
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--base) 0%, var(--primary) 50%, var(--secondary) 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    #home::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(233,69,96,0.15) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+    #home::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(15,52,96,0.5) 0%, transparent 70%);
+      bottom: -80px; left: -80px;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50%       { transform: scale(1.1); opacity: 1; }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(233,69,96,0.15);
+      border: 1px solid rgba(233,69,96,0.4);
+      color: var(--accent);
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      animation: fadeSlideDown 0.8s ease both;
+    }
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 1;
+      color: #fff;
+      animation: fadeSlideUp 0.9s ease 0.2s both;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      font-weight: 400;
+      max-width: 500px;
+      animation: fadeSlideUp 0.9s ease 0.4s both;
+    }
+    .hero-btns { animation: fadeSlideUp 0.9s ease 0.6s both; }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+    }
+    .btn-accent:hover {
+      background: #c73654;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(233,69,96,0.4);
+    }
+    .btn-outline-light-custom {
+      background: transparent;
+      color: var(--light);
+      border: 2px solid rgba(255,255,255,0.3);
+      padding: 12px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+    .btn-outline-light-custom:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .hero-avatar {
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      object-fit: cover;
+      box-shadow: 0 0 60px rgba(233,69,96,0.3);
+      animation: float 6s ease-in-out infinite, fadeIn 1s ease 0.5s both;
+    }
+    .avatar-placeholder {
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5rem;
+      color: rgba(255,255,255,0.9);
+      box-shadow: 0 0 60px rgba(233,69,96,0.3);
+      animation: float 6s ease-in-out infinite, fadeIn 1s ease 0.5s both;
+    }
+    .avatar-placeholder small { font-size: 1rem; font-family: 'Nunito', sans-serif; letter-spacing: 2px; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-18px); }
+    }
+    @keyframes fadeSlideDown {
+      from { opacity:0; transform:translateY(-20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeSlideUp {
+      from { opacity:0; transform:translateY(30px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity:0; }
+      to   { opacity:1; }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 90px 0; }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      letter-spacing: 2px;
+    }
+    .section-title span { color: var(--accent); }
+    .section-divider {
+      width: 60px; height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin: 12px 0 40px;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--primary); }
+    .about-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 32px;
+      height: 100%;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .about-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(233,69,96,0.4);
+    }
+    .about-card i {
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .about-card h5 { font-weight: 800; margin-bottom: 8px; }
+    .about-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--base); }
+    .skill-card {
+      background: linear-gradient(135deg, rgba(15,52,96,0.5), rgba(22,33,62,0.8));
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: all 0.35s;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(233,69,96,0.08), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .skill-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 12px 40px rgba(233,69,96,0.2); }
+    .skill-card:hover::before { opacity: 1; }
+    .skill-icon { font-size: 3rem; color: var(--accent); margin-bottom: 16px; }
+    .skill-card h4 { font-weight: 800; font-size: 1.25rem; margin-bottom: 12px; }
+    .skill-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.7; }
+
+    .progress-label { display: flex; justify-content: space-between; margin-bottom: 6px; font-weight: 700; font-size: 0.9rem; }
+    .progress { height: 8px; border-radius: 4px; background: rgba(255,255,255,0.08); margin-bottom: 16px; }
+    .progress-bar { background: linear-gradient(90deg, var(--secondary), var(--accent)); border-radius: 4px; transition: width 1.5s ease; }
+
+    /* ── HOBBIES ── */
+    #hobbies { background: var(--primary); }
+    .hobby-card {
+      background: var(--base);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.35s;
+      position: relative;
+      overflow: hidden;
+    }
+    .hobby-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .hobby-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    .hobby-card:hover::after { transform: scaleX(1); }
+    .hobby-icon { font-size: 4rem; margin-bottom: 20px; }
+    .hobby-card h4 { font-weight: 800; font-size: 1.4rem; margin-bottom: 12px; }
+    .hobby-card p { color: var(--muted); font-size: 0.93rem; line-height: 1.7; }
+    .hobby-badge {
+      display: inline-block;
+      background: rgba(233,69,96,0.15);
+      border: 1px solid rgba(233,69,96,0.3);
+      color: var(--accent);
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin: 4px;
+    }
+
+    /* ── SCHOOL ── */
+    #school { background: var(--base); }
+    .school-card {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: 1px solid rgba(233,69,96,0.25);
+      border-radius: 20px;
+      padding: 50px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .school-card::before {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(233,69,96,0.08);
+      top: -100px; right: -100px;
+    }
+    .school-logo {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 2.5rem;
+      border: 2px solid rgba(233,69,96,0.4);
+    }
+    .school-card h3 { font-weight: 800; font-size: 1.6rem; margin-bottom: 8px; }
+    .school-card p { color: var(--muted); margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--primary); }
+    .contact-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: var(--light);
+    }
+    .contact-item:hover {
+      border-color: var(--accent);
+      transform: translateX(6px);
+      color: var(--light);
+      box-shadow: 0 8px 30px rgba(233,69,96,0.15);
+    }
+    .contact-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: rgba(233,69,96,0.15);
+      border: 1px solid rgba(233,69,96,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .contact-item h6 { font-weight: 800; margin: 0 0 4px; font-size: 1rem; }
+    .contact-item small { color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--base);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 30px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    footer span { color: var(--accent); font-weight: 700; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .avatar-placeholder, .hero-avatar { width: 220px; height: 220px; font-size: 3rem; }
+      .hero-name { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════ NAVBAR ════════ -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#home">OL.</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="bi bi-list text-light fs-2"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-1">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
+        <li class="nav-item"><a class="nav-link" href="#school">School</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section id="home">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-7 order-2 order-lg-1">
+        <div class="hero-tag">✦ Welcome to my world</div>
+        <h1 class="hero-name">OLIVIER<br><span>LAURENS</span></h1>
+        <p class="hero-subtitle mt-3 mb-4">
+          Siswa berprestasi dengan semangat tinggi dalam olahraga & akademis.
+          Pecinta matematika, bahasa Inggris, basket, dan futsal!
+        </p>
+        <div class="hero-btns d-flex flex-wrap gap-3">
+          <a href="#contact" class="btn btn-accent">
+            <i class="bi bi-envelope-fill me-2"></i>Hubungi Saya
+          </a>
+          <a href="#about" class="btn-outline-light-custom">
+            Tentang Saya <i class="bi bi-arrow-right ms-2"></i>
+          </a>
+        </div>
+        <div class="d-flex gap-4 mt-4">
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--accent)">2</div>
+            <div style="color:var(--muted);font-size:0.85rem">Olahraga Favorit</div>
+          </div>
+          <div style="width:1px;background:rgba(255,255,255,0.1)"></div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--accent)">2</div>
+            <div style="color:var(--muted);font-size:0.85rem">Keahlian Utama</div>
+          </div>
+          <div style="width:1px;background:rgba(255,255,255,0.1)"></div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--accent)">100%</div>
+            <div style="color:var(--muted);font-size:0.85rem">Semangat</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 order-1 order-lg-2 text-center">
+        <div style="position:relative;display:inline-block">
+          <!-- Foto / Placeholder -->
+          <div class="avatar-placeholder mx-auto" id="avatarPlaceholder">
+            OL
+            <small style="font-size:0.75rem;opacity:0.7;margin-top:4px">OLIVIER LAURENS</small>
+          </div>
+          <img id="avatarImg" class="hero-avatar mx-auto d-none" src="" alt="Olivier Laurens"/>
+
+          <!-- Tombol ganti foto -->
+          <label for="fotoUpload" title="Ganti Foto" style="
+            position:absolute; bottom:10px; right:10px;
+            width:44px; height:44px; border-radius:50%;
+            background:var(--accent); border:3px solid var(--base);
+            display:flex; align-items:center; justify-content:center;
+            cursor:pointer; box-shadow:0 4px 15px rgba(233,69,96,0.5);
+            transition:transform 0.2s;
+          " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="bi bi-camera-fill" style="color:#fff;font-size:1.1rem"></i>
+          </label>
+          <input type="file" id="fotoUpload" accept="image/*" style="display:none"/>
+        </div>
+        <p style="color:var(--muted);font-size:0.8rem;margin-top:12px">
+          <i class="bi bi-camera me-1"></i>Klik ikon kamera untuk ganti foto
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ABOUT ════════ -->
+<section id="about">
+  <div class="container reveal">
+    <div class="section-title">ABOUT <span>ME</span></div>
+    <div class="section-divider"></div>
+    <div class="row g-4 mb-5">
+      <div class="col-lg-7">
+        <p style="color:var(--muted);font-size:1.05rem;line-height:1.9">
+          Halo! Nama saya <strong style="color:#fff">Olivier Laurens</strong>, seorang pelajar yang
+          penuh semangat dalam menjalani hari-hari penuh tantangan dan kesenangan. Saya percaya bahwa
+          keseimbangan antara akademis dan olahraga adalah kunci untuk berkembang menjadi pribadi yang
+          unggul dan seimbang.
+        </p>
+        <p class="mt-3" style="color:var(--muted);font-size:1.05rem;line-height:1.9">
+          Dalam bidang akademis, saya sangat menyukai <strong style="color:var(--accent)">Matematika</strong>
+          karena logika dan pola yang tersembunyi di balik angka-angka, serta
+          <strong style="color:var(--accent)">Bahasa Inggris</strong> yang membuka jendela komunikasi
+          ke dunia global. Di luar kelas, lapangan basket dan futsal adalah tempat saya melepas energi
+          dan membangun kerja sama tim.
+        </p>
+      </div>
+      <div class="col-lg-5">
+        <div class="row g-3">
+          <div class="col-6">
+            <div class="about-card">
+              <i class="bi bi-person-fill"></i>
+              <h5>Nama</h5>
+              <p>Olivier Laurens</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="about-card">
+              <i class="bi bi-mortarboard-fill"></i>
+              <h5>Sekolah</h5>
+              <p>SKK Malang</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="about-card">
+              <i class="bi bi-trophy-fill"></i>
+              <h5>Keahlian</h5>
+              <p>Matematika & Bahasa Inggris</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="about-card">
+              <i class="bi bi-heart-fill"></i>
+              <h5>Hobi</h5>
+              <p>Basket & Futsal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SKILLS ════════ -->
+<section id="skills">
+  <div class="container reveal">
+    <div class="section-title">MY <span>SKILLS</span></div>
+    <div class="section-divider"></div>
+    <div class="row g-4 mb-5">
+      <div class="col-md-6">
+        <div class="skill-card h-100">
+          <div class="skill-icon">🔢</div>
+          <h4>Matematika</h4>
+          <p>
+            Kemampuan analitis dan berpikir logis yang kuat. Mahir dalam pemecahan masalah,
+            aljabar, geometri, dan pola bilangan. Matematika bukan sekadar pelajaran —
+            melainkan cara berpikir yang sistematis.
+          </p>
+          <div class="mt-4">
+            <div class="progress-label"><span>Aljabar</span><span>90%</span></div>
+            <div class="progress"><div class="progress-bar" style="width:90%"></div></div>
+            <div class="progress-label"><span>Geometri</span><span>85%</span></div>
+            <div class="progress"><div class="progress-bar" style="width:85%"></div></div>
+            <div class="progress-label"><span>Logika & Problem Solving</span><span>92%</span></div>
+            <div class="progress"><div class="progress-bar" style="width:92%"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="skill-card h-100">
+          <div class="skill-icon">🌍</div>
+          <h4>Bahasa Inggris</h4>
+          <p>
+            Kemampuan komunikasi lisan dan tulisan dalam Bahasa Inggris yang baik.
+            Mampu memahami teks bacaan kompleks, menulis esai terstruktur, dan
+            berkomunikasi dengan percaya diri dalam konteks akademis maupun sehari-hari.
+          </p>
+          <div class="mt-4">
+            <div class="progress-label"><span>Reading & Writing</span><span>88%</span></div>
+            <div class="progress"><div class="progress-bar" style="width:88%"></div></div>
+            <div class="progress-label"><span>Speaking</span><span>80%</span></div>
+            <div class="progress"><div class="progress-bar" style="width:80%"></div></div>
+            <div class="progress-label"><span>Grammar</span><span>85%</span></div>
+            <div class="progress"><div class="progress-bar" style="width:85%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <h5 class="mb-4" style="font-weight:800;letter-spacing:1px">SOFT SKILLS</h5>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+        <div class="about-card text-center">
+          <i class="bi bi-people-fill"></i>
+          <h5>Teamwork</h5>
+          <p>Terbiasa kerja tim dari olahraga</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="about-card text-center">
+          <i class="bi bi-lightning-fill"></i>
+          <h5>Fast Learner</h5>
+          <p>Cepat memahami konsep baru</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="about-card text-center">
+          <i class="bi bi-chat-dots-fill"></i>
+          <h5>Komunikasi</h5>
+          <p>Ekspresif dan komunikatif</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="about-card text-center">
+          <i class="bi bi-bullseye"></i>
+          <h5>Fokus</h5>
+          <p>Disiplin dan pantang menyerah</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ HOBBIES ════════ -->
+<section id="hobbies">
+  <div class="container reveal">
+    <div class="section-title">MY <span>HOBBIES</span></div>
+    <div class="section-divider"></div>
+    <p class="mb-5" style="color:var(--muted);max-width:600px">
+      Olahraga bukan hanya aktivitas fisik — ini adalah sekolah kehidupan yang mengajarkan
+      disiplin, strategi, dan kerja tim yang tidak ternilai.
+    </p>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="hobby-card h-100">
+          <div class="hobby-icon">🏀</div>
+          <h4>Basket</h4>
+          <p>
+            Basket adalah salah satu hobi terbesar saya. Olahraga ini mengajarkan saya
+            tentang koordinasi, strategi, dan kekompakan tim. Setiap pertandingan
+            adalah peluang untuk belajar dan terus berkembang di lapangan maupun
+            dalam kehidupan sehari-hari.
+          </p>
+          <div class="mt-3">
+            <span class="hobby-badge">⚡ High Intensity</span>
+            <span class="hobby-badge">🤝 Team Sport</span>
+            <span class="hobby-badge">🎯 Strategy</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="hobby-card h-100">
+          <div class="hobby-icon">⚽</div>
+          <h4>Futsal</h4>
+          <p>
+            Futsal melatih kecepatan berpikir, kelincahan kaki, dan kerja sama yang
+            intens dalam ruangan tertutup. Saya sangat menikmati dinamika permainan
+            futsal yang cepat dan penuh teknik — setiap sentuhan bola adalah keputusan
+            yang harus tepat!
+          </p>
+          <div class="mt-3">
+            <span class="hobby-badge">⚡ Fast-Paced</span>
+            <span class="hobby-badge">🧠 Quick Thinking</span>
+            <span class="hobby-badge">🏃 Agility</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fun Stats -->
+    <div class="row g-3 mt-4">
+      <div class="col-6 col-md-3">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:24px;text-align:center">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--accent)">🏀</div>
+          <div style="font-weight:800;margin-top:8px">Basket</div>
+          <div style="color:var(--muted);font-size:0.85rem">Hobi #1</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:24px;text-align:center">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--accent)">⚽</div>
+          <div style="font-weight:800;margin-top:8px">Futsal</div>
+          <div style="color:var(--muted);font-size:0.85rem">Hobi #2</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:24px;text-align:center">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--accent)">💪</div>
+          <div style="font-weight:800;margin-top:8px">Aktif</div>
+          <div style="color:var(--muted);font-size:0.85rem">Setiap Hari</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:24px;text-align:center">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--accent)">🏆</div>
+          <div style="font-weight:800;margin-top:8px">Kompetitif</div>
+          <div style="color:var(--muted);font-size:0.85rem">Semangat Juara</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SCHOOL ════════ -->
+<section id="school">
+  <div class="container reveal">
+    <div class="section-title">MY <span>SCHOOL</span></div>
+    <div class="section-divider"></div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="school-card">
+          <div class="school-logo">🏫</div>
+          <h3>Sekolah Kalam Kudus Malang</h3>
+          <p>
+            Tempat saya menimba ilmu, mengembangkan karakter, dan menemukan potensi terbaik
+            dalam diri. SKK Malang membentuk saya menjadi pribadi yang berintegritas,
+            berprestasi, dan berempati.
+          </p>
+          <a href="https://skkkmalang.sch.id/" target="_blank" class="btn btn-accent">
+            <i class="bi bi-globe2 me-2"></i>Kunjungi Website Sekolah
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CONTACT ════════ -->
+<section id="contact">
+  <div class="container reveal">
+    <div class="section-title">GET IN <span>TOUCH</span></div>
+    <div class="section-divider"></div>
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <h4 style="font-weight:800;font-size:1.5rem">Mari Terhubung!</h4>
+        <p class="mt-3" style="color:var(--muted);line-height:1.8">
+          Apakah kamu ingin berdiskusi tentang matematika, berbagi cerita olahraga,
+          atau sekadar menyapa — saya selalu terbuka untuk koneksi baru yang positif!
+        </p>
+        <div class="mt-4 p-4" style="background:rgba(233,69,96,0.08);border:1px solid rgba(233,69,96,0.2);border-radius:16px">
+          <p style="color:var(--accent);font-weight:700;margin-bottom:8px">⚡ Fun Fact</p>
+          <p style="color:var(--muted);font-size:0.93rem;margin:0">
+            "Matematika dan olahraga mengajarkan hal yang sama: latihan konsisten
+            menghasilkan hasil yang luar biasa!"
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="d-flex flex-column gap-3">
+          <a href="mailto:olivierlaurens@email.com" class="contact-item">
+            <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+            <div>
+              <h6>Email</h6>
+              <small>olivierlaurens@email.com</small>
+            </div>
+          </a>
+          <a href="https://github.com/olivierlaurens" target="_blank" class="contact-item">
+            <div class="contact-icon"><i class="bi bi-github"></i></div>
+            <div>
+              <h6>GitHub</h6>
+              <small>github.com/olivierlaurens</small>
+            </div>
+          </a>
+          <a href="https://linkedin.com/in/olivierlaurens" target="_blank" class="contact-item">
+            <div class="contact-icon"><i class="bi bi-linkedin"></i></div>
+            <div>
+              <h6>LinkedIn</h6>
+              <small>linkedin.com/in/olivierlaurens</small>
+            </div>
+          </a>
+          <a href="https://skkkmalang.sch.id/" target="_blank" class="contact-item">
+            <div class="contact-icon"><i class="bi bi-building-fill"></i></div>
+            <div>
+              <h6>Sekolah</h6>
+              <small>SKK Malang — skkkmalang.sch.id</small>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="container">
+    <p>Made with <span>♥</span> by <span>Olivier Laurens</span> &nbsp;|&nbsp; 2025</p>
+    <p class="mt-1" style="font-size:0.8rem">
+      <a href="https://skkkmalang.sch.id/" target="_blank" style="color:var(--accent);text-decoration:none">
+        🏫 Sekolah Kalam Kudus Malang
+      </a>
+    </p>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // ── Active nav on scroll ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+
+  // ── Scroll Reveal ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // Animate progress bars
+        e.target.querySelectorAll('.progress-bar').forEach(bar => {
+          const w = bar.style.width;
+          bar.style.width = '0%';
+          setTimeout(() => { bar.style.width = w; }, 100);
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // ── Navbar shrink on scroll ──
+  window.addEventListener('scroll', () => {
+    document.querySelector('.navbar').style.padding =
+      window.scrollY > 50 ? '8px 0' : '';
+  });
+
+  // ── Upload Foto ──
+  document.getElementById('fotoUpload').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      const img = document.getElementById('avatarImg');
+      const placeholder = document.getElementById('avatarPlaceholder');
+      img.src = ev.target.result;
+      img.classList.remove('d-none');
+      placeholder.classList.add('d-none');
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // ── Smooth close mobile menu on link click ──
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const collapse = document.getElementById('navMenu');
+      if (collapse.classList.contains('show')) {
+        bootstrap.Collapse.getInstance(collapse)?.hide();
+      }
+    });
+  });
+</script>
+</body>
+</html>
